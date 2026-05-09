@@ -12,18 +12,35 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative; /* Necessary to position the name relative to the screen */
         }
         h1 {
-            background: rgba(255, 255, 255, 0.8); /* Adds a white blur behind text for readability */
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px 40px;
             border-radius: 15px;
             font-family: 'Georgia', serif;
             color: #ff4d6d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .signature {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.3); /* Adds a slight dark tint for visibility against the flowers */
+            padding: 5px 15px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+
     <h1>Happy Mother's Day! ❤️</h1>
+
     <div class="signature">Tim</div>
+
 </body>
 </html>
