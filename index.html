@@ -2,18 +2,33 @@
 <html>
 <head>
     <style>
+        /* 1. ANIMATION: This creates a soft 'pulse' effect */
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         body {
             background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&q=80&w=2070');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             display: flex;
+            flex-direction: column; /* Stack button and text */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative; /* Necessary to position the name relative to the screen */
+            position: relative;
+            overflow: hidden;
         }
+
         h1 {
             background: rgba(255, 255, 255, 0.8);
             padding: 20px 40px;
@@ -21,7 +36,24 @@
             font-family: 'Georgia', serif;
             color: #ff4d6d;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            /* Applying the animations */
+            animation: fadeIn 2s ease-out, heartBeat 3s infinite ease-in-out;
         }
+
+        /* Music Button Styling */
+        #musicBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
         .signature {
             position: absolute;
             bottom: 20px;
@@ -30,9 +62,7 @@
             font-size: 1.2rem;
             color: white;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            background: rgba(0, 0, 0, 0.0); /* Adds a slight dark tint for visibility against the flowers */
             padding: 5px 15px;
-            border-radius: 5px;
         }
     </style>
 </head>
@@ -40,7 +70,30 @@
 
     <h1>Happy Mother's Day! ❤️</h1>
 
+    <!-- Play Music Button -->
+    <button id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+
+    <!-- Audio Element (Using a royalty-free piano track) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="signature">Tim</div>
+
+    <script>
+        function toggleMusic() {
+            var music = document.getElementById("bgMusic");
+            var btn = document.getElementById("musicBtn");
+            
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸ Pause Music";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵 Play Music";
+            }
+        }
+    </script>
 
 </body>
 </html>
